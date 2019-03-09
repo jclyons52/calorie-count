@@ -1,7 +1,7 @@
 import { ObjectType, Field, ID } from "type-graphql";
 import { Entity, ManyToOne, Column, PrimaryGeneratedColumn } from "typeorm";
-import { Recipe } from "./Recipe";
-import { Ingredient } from "./Ingredient";
+import { Recipe } from "./Recipe.entity";
+import { Ingredient } from "./Ingredient.entity";
 
 @ObjectType()
 @Entity()

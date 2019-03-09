@@ -1,10 +1,10 @@
-import {Entity, PrimaryGeneratedColumn, Column, BaseEntity, OneToMany} from "typeorm";
-import { ObjectType, Field, ID, Root } from "type-graphql";
-import { Recipe } from "./Recipe";
+import {Entity, PrimaryGeneratedColumn, Column, OneToMany} from "typeorm";
+import { ObjectType, Field, ID } from "type-graphql";
+import { Recipe } from "../entity/Recipe.entity";
 
 @ObjectType()
 @Entity()
-export class User extends BaseEntity {
+export class User {
     @Field(() => ID)
     @PrimaryGeneratedColumn()
     id: number;
@@ -31,8 +31,7 @@ export class User extends BaseEntity {
     @OneToMany(() => Recipe, recipe => recipe.owner)
     recipes: Recipe[]
 
-    @Field()
-    name(@Root() user: User): string {
-        return user.firstName + " " + user.lastName
+    get name(): string {
+        return this.firstName + " " + this.lastName
     }
 }

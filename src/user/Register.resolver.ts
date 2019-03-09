@@ -1,13 +1,22 @@
 import { Resolver, Mutation, Arg, Query } from "type-graphql";
 import bcrypt from "bcryptjs";
-import { User } from "../entity/User";
-import { RegisterInput } from "./RegisterInput";
+import { User } from "./User.entity";
+import { RegisterInput } from "./Register.input";
+import { Service } from "typedi";
+import { Repository } from "typeorm";
+import {InjectRepository} from "typeorm-typedi-extensions";
 
+@Service()
 @Resolver()
 export class RegisterResolver {
+
+  constructor(
+    @InjectRepository(User) private userRepo: Repository<User>
+  ) {}
+
   @Query(() => [User])
   async users(): Promise<User[]> {
-    return User.find();
+    return this.userRepo.find();
   }
 
   @Mutation(() => User)
@@ -19,13 +28,13 @@ export class RegisterResolver {
     password
   }: RegisterInput): Promise<User> {
     const hashedPassword = await bcrypt.hash(password, 12);
-    const user = await User.create({
+    const entity = this.userRepo.create({
       firstName,
       lastName,
       email,
       password: hashedPassword
-    }).save();
-
-    return user;
+    })
+    
+    return this.userRepo.save(entity);
   }
 }

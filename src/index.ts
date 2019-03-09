@@ -3,9 +3,10 @@ import "reflect-metadata";
 import { buildSchema, Resolver, Query } from "type-graphql";
 import { ApolloServer } from "apollo-server-express";
 import Express from "express";
-import { createConnection } from "typeorm";
-import { RegisterResolver } from "./resolver/RegisterResolver";
-import { UserResolver } from "./resolver/UserResolver";
+import { createConnection, useContainer } from "typeorm";
+import { RegisterResolver } from "./user/Register.resolver";
+import { UserResolver } from "./user/UserResolver";
+import { Container } from "typedi";
 
 @Resolver()
 class HelloResolver {
@@ -16,6 +17,7 @@ class HelloResolver {
 }
 
 const main = async () => {
+    useContainer(Container);
     await createConnection();
     const schema = await buildSchema({
         resolvers: [HelloResolver, RegisterResolver, UserResolver],
