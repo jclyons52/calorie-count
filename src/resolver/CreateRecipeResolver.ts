@@ -7,8 +7,8 @@ import { InjectRepository } from "typeorm-typedi-extensions";
 import { Repository } from "typeorm";
 
 
-@Resolver()
 @Service()
+@Resolver()
 export class AddRecipeResolver {
 
     constructor(

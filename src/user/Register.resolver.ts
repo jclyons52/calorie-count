@@ -10,13 +10,16 @@ import {InjectRepository} from "typeorm-typedi-extensions";
 @Resolver()
 export class RegisterResolver {
 
-  constructor(
-    @InjectRepository(User) private userRepo: Repository<User>
-  ) {}
+  constructor(@InjectRepository(User) private userRepo: Repository<User>) {}
 
   @Query(() => [User])
   async users(): Promise<User[]> {
-    return this.userRepo.find();
+    try {
+      return this.userRepo.find();
+    } catch (e) {
+      console.log(e)
+      return []
+    }
   }
 
   @Mutation(() => User)

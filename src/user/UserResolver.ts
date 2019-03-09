@@ -5,18 +5,24 @@ import { Service } from "typedi";
 import { InjectRepository } from "typeorm-typedi-extensions";
 import { Repository } from "typeorm";
 
-
-@Resolver(User)
 @Service()
+@Resolver(User)
 export class UserResolver {
 
     constructor(
         @InjectRepository(Recipe) private recipeRepo: Repository<Recipe>
-    ){}
+    ){
+        console.log(recipeRepo);
+    }
 
     @FieldResolver(() => [Recipe])
     async recipes(@Root() user: User): Promise<Recipe[]> {
-        return this.recipeRepo.find({ where: { user } })
+        try {
+            return this.recipeRepo.find({ where: { user } })
+        } catch (e) {
+            console.log(e)
+            return []
+        }
     }
 
     @FieldResolver(() => String)
