@@ -1,7 +1,7 @@
-import { ObjectType, Field, ID } from "type-graphql";
-import { Entity, ManyToOne, Column, PrimaryGeneratedColumn } from "typeorm";
-import { Recipe } from "./Recipe.entity";
+import { Field, ID, ObjectType } from "type-graphql";
+import { Column, Entity, ManyToOne, PrimaryGeneratedColumn } from "typeorm";
 import { Ingredient } from "./Ingredient.entity";
+import { Recipe } from "./Recipe.entity";
 
 @ObjectType()
 @Entity()
@@ -9,17 +9,17 @@ export class RecipeIngredient {
 
     @Field(() => ID)
     @PrimaryGeneratedColumn()
-    id: string;
+    public id: string;
 
     @Field(() => Recipe)
-    @ManyToOne(() => Recipe, recipe => recipe.recipeIngredients)
-    recipe: Recipe
+    @ManyToOne(() => Recipe, (recipe) => recipe.recipeIngredients)
+    public recipe: Recipe;
 
     @Field(() => Ingredient)
-    @ManyToOne(() => Ingredient, ingredient => ingredient.recipeIngredients)
-    ingredient: Ingredient
+    @ManyToOne(() => Ingredient, (ingredient) => ingredient.recipeIngredients)
+    public ingredient: Ingredient;
 
     @Field()
     @Column()
-    quantity: number;
+    public quantity: number;
 }

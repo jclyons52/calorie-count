@@ -1,5 +1,5 @@
-import {Entity, PrimaryGeneratedColumn, Column, OneToMany} from "typeorm";
-import { ObjectType, Field, ID } from "type-graphql";
+import { Field, ID, ObjectType } from "type-graphql";
+import {Column, Entity, OneToMany, PrimaryGeneratedColumn} from "typeorm";
 import { Recipe } from "../entity/Recipe.entity";
 
 @ObjectType()
@@ -7,31 +7,31 @@ import { Recipe } from "../entity/Recipe.entity";
 export class User {
     @Field(() => ID)
     @PrimaryGeneratedColumn()
-    id: number;
+    public id: number;
 
     @Field()
     @Column()
-    firstName: string;
+    public firstName: string;
 
     @Field()
     @Column()
-    lastName: string;
+    public lastName: string;
 
     @Field()
     @Column()
-    email: string;
+    public email: string;
 
     @Column()
-    password: string;
+    public password: string;
 
     @Column()
-    isActive: boolean = true;
+    public isActive: boolean = true;
 
     @Field(() => [Recipe])
-    @OneToMany(() => Recipe, recipe => recipe.owner)
-    recipes: Recipe[]
+    @OneToMany(() => Recipe, (recipe) => recipe.owner)
+    public recipes: Recipe[];
 
     get name(): string {
-        return this.firstName + " " + this.lastName
+        return this.firstName + " " + this.lastName;
     }
 }

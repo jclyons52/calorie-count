@@ -1,5 +1,5 @@
-import { Entity, PrimaryGeneratedColumn, Column, OneToMany } from "typeorm";
-import { ObjectType, Field, ID } from "type-graphql";
+import { Field, ID, ObjectType } from "type-graphql";
+import { Column, Entity, OneToMany, PrimaryGeneratedColumn } from "typeorm";
 import { RecipeIngredient } from "./RecipeIngredient.entity";
 
 @ObjectType()
@@ -7,21 +7,21 @@ import { RecipeIngredient } from "./RecipeIngredient.entity";
 export class Ingredient {
     @Field(() => ID)
     @PrimaryGeneratedColumn()
-    id: number;
+    public id: number;
 
     @Field()
     @Column()
-    title: string;
+    public title: string;
 
     @Field()
     @Column()
-    calories: number;
+    public calories: number;
 
     @Field()
     @Column()
-    unit: string
+    public unit: string;
 
     @Field(() => [RecipeIngredient])
-    @OneToMany(() => RecipeIngredient, ri => ri.recipe)
-    recipeIngredients: RecipeIngredient[];
+    @OneToMany(() => RecipeIngredient, (ri) => ri.recipe)
+    public recipeIngredients: RecipeIngredient[];
 }

@@ -1,5 +1,5 @@
-import { ObjectType, Field, ID } from "type-graphql";
-import { ManyToOne, Entity, PrimaryGeneratedColumn, Column, OneToMany } from "typeorm";
+import { Field, ID, ObjectType } from "type-graphql";
+import { Column, Entity, ManyToOne, OneToMany, PrimaryGeneratedColumn } from "typeorm";
 import { User } from "../user/User.entity";
 import { RecipeIngredient } from "./RecipeIngredient.entity";
 
@@ -7,27 +7,27 @@ import { RecipeIngredient } from "./RecipeIngredient.entity";
 @Entity()
 export class Recipe {
 
-  @Field(_type => ID)
+  @Field(() => ID)
   @PrimaryGeneratedColumn()
-  id: string;
+  public id: string;
 
   @Field()
   @Column()
-  title: string;
+  public title: string;
 
   @Field({ nullable: true })
   @Column({ nullable: true })
-  description?: string;
+  public description?: string;
 
   @Field()
   @Column()
-  creationDate: Date = new Date();
+  public creationDate: Date = new Date();
 
   @Field(() => [RecipeIngredient])
-  @OneToMany(() => RecipeIngredient, ri => ri.recipe)
-  recipeIngredients: RecipeIngredient[];
+  @OneToMany(() => RecipeIngredient, (ri) => ri.recipe)
+  public recipeIngredients: RecipeIngredient[];
 
   @Field(() => User)
-  @ManyToOne(() => User, user => user.recipes)
-  owner: User
+  @ManyToOne(() => User, (user) => user.recipes)
+  public owner: User;
 }

@@ -1,20 +1,20 @@
-import { InputType, Field } from "type-graphql";
-import { Length, IsEmail } from "class-validator";
+import { IsEmail, Length } from "class-validator";
+import { Field, InputType } from "type-graphql";
 
 @InputType()
 export class RegisterInput {
     @Field()
     @Length(3, 255)
-    firstName: string;
+    public firstName: string;
 
     @Field()
     @Length(1, 255)
-    lastName: string;
+    public lastName: string;
 
     @Field()
     @IsEmail()
-    email: string;
+    public email: string;
 
     @Field()
-    password: string;
+    public password: string;
 }

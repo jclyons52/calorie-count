@@ -1,11 +1,11 @@
-import { Repository, DeepPartial } from "typeorm";
+import { DeepPartial, Repository } from "typeorm";
 
 /**
  * Base factory
  */
 export abstract class Factory<T> {
 
-    constructor(protected repository: Repository<T>){}
+    constructor(protected repository: Repository<T>) {}
 
     /**
      * Create an entity and DO NOT persist to DB

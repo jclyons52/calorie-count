@@ -1,14 +1,13 @@
-import { InputType, Field } from "type-graphql";
-
+import { Field, InputType } from "type-graphql";
 
 @InputType()
 export class AddRecipeInput {
     @Field()
-    title: string;
-  
+    public title: string;
+
     @Field({ nullable: true })
-    description?: string;
-    
+    public description?: string;
+
     @Field()
-    ownerId: string;
+    public ownerId: string;
 }
