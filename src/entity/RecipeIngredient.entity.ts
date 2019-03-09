@@ -6,20 +6,19 @@ import { Recipe } from "./Recipe.entity";
 @ObjectType()
 @Entity()
 export class RecipeIngredient {
+  @Field(() => ID)
+  @PrimaryGeneratedColumn()
+  public id: string;
 
-    @Field(() => ID)
-    @PrimaryGeneratedColumn()
-    public id: string;
+  @Field(() => Recipe)
+  @ManyToOne(() => Recipe, recipe => recipe.recipeIngredients)
+  public recipe: Recipe;
 
-    @Field(() => Recipe)
-    @ManyToOne(() => Recipe, (recipe) => recipe.recipeIngredients)
-    public recipe: Recipe;
+  @Field(() => Ingredient)
+  @ManyToOne(() => Ingredient, ingredient => ingredient.recipeIngredients)
+  public ingredient: Ingredient;
 
-    @Field(() => Ingredient)
-    @ManyToOne(() => Ingredient, (ingredient) => ingredient.recipeIngredients)
-    public ingredient: Ingredient;
-
-    @Field()
-    @Column()
-    public quantity: number;
+  @Field()
+  @Column()
+  public quantity: number;
 }

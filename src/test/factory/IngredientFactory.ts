@@ -12,9 +12,9 @@ export class IngredientFactory extends Factory<Ingredient> {
   }
 
   public create({
-      title = faker.lorem.word(),
-      calories = faker.random.number(),
-      unit = faker.random.word(),
+    title = faker.lorem.word(),
+    calories = faker.random.number(),
+    unit = faker.random.word()
   }: Partial<Ingredient>): Ingredient {
     return this.repository.create({ title, calories, unit });
   }

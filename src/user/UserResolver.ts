@@ -9,24 +9,23 @@ import { User } from "./User.entity";
 @Service()
 @Resolver(User)
 export class UserResolver {
+  constructor(
+    @InjectRepository(Recipe) private recipeRepo: Repository<Recipe>,
+    private logger: Logger
+  ) {}
 
-    constructor(
-        @InjectRepository(Recipe) private recipeRepo: Repository<Recipe>,
-        private logger: Logger,
-    ) {}
-
-    @FieldResolver(() => [Recipe])
-    public async recipes(@Root() user: User): Promise<Recipe[]> {
-        try {
-            return this.recipeRepo.find({ where: { user } });
-        } catch (e) {
-            this.logger.log(e);
-            return [];
-        }
+  @FieldResolver(() => [Recipe])
+  public async recipes(@Root() user: User): Promise<Recipe[]> {
+    try {
+      return this.recipeRepo.find({ where: { user } });
+    } catch (e) {
+      this.logger.log(e);
+      return [];
     }
+  }
 
-    @FieldResolver(() => String)
-    public name(@Root() user: User): string {
-        return user.name;
-    }
+  @FieldResolver(() => String)
+  public name(@Root() user: User): string {
+    return user.name;
+  }
 }

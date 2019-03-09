@@ -9,20 +9,24 @@ import { AddRecipeInput } from "./AddRecipeInput";
 @Service()
 @Resolver()
 export class AddRecipeResolver {
+  constructor(
+    @InjectRepository(Recipe) private recipeRepo: Repository<Recipe>,
+    @InjectRepository(User) private userRepo: Repository<User>
+  ) {}
 
-    constructor(
-        @InjectRepository(Recipe) private recipeRepo: Repository<Recipe>,
-        @InjectRepository(User) private userRepo: Repository<User>,
-    ) {}
+  @Mutation(() => Recipe)
+  public async addRecipe(@Arg("input")
+  {
+    title,
+    description,
+    ownerId
+  }: AddRecipeInput) {
+    const recipe = await this.recipeRepo.create({
+      description,
+      owner: await this.userRepo.findOneOrFail(ownerId),
+      title
+    });
 
-    @Mutation(() => Recipe)
-    public async addRecipe(@Arg("input") { title, description, ownerId }: AddRecipeInput) {
-        const recipe = await this.recipeRepo.create({
-            description,
-            owner: await this.userRepo.findOneOrFail(ownerId),
-            title,
-        });
-
-        return this.recipeRepo.save(recipe);
-    }
+    return this.recipeRepo.save(recipe);
+  }
 }

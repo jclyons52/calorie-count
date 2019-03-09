@@ -5,23 +5,23 @@ import { RecipeIngredient } from "./RecipeIngredient.entity";
 @ObjectType()
 @Entity()
 export class Ingredient {
-    @Field(() => ID)
-    @PrimaryGeneratedColumn()
-    public id: number;
+  @Field(() => ID)
+  @PrimaryGeneratedColumn()
+  public id: number;
 
-    @Field()
-    @Column()
-    public title: string;
+  @Field()
+  @Column()
+  public title: string;
 
-    @Field()
-    @Column()
-    public calories: number;
+  @Field()
+  @Column()
+  public calories: number;
 
-    @Field()
-    @Column()
-    public unit: string;
+  @Field()
+  @Column()
+  public unit: string;
 
-    @Field(() => [RecipeIngredient])
-    @OneToMany(() => RecipeIngredient, (ri) => ri.recipe)
-    public recipeIngredients: RecipeIngredient[];
+  @Field(() => [RecipeIngredient])
+  @OneToMany(() => RecipeIngredient, ri => ri.recipe)
+  public recipeIngredients: RecipeIngredient[];
 }

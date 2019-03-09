@@ -2,7 +2,7 @@ import bcrypt from "bcryptjs";
 import { Arg, Mutation, Query, Resolver } from "type-graphql";
 import { Service } from "typedi";
 import { Repository } from "typeorm";
-import {InjectRepository} from "typeorm-typedi-extensions";
+import { InjectRepository } from "typeorm-typedi-extensions";
 import { Logger } from "../loger/Logger";
 import { RegisterInput } from "./Register.input";
 import { User } from "./User.entity";
@@ -10,11 +10,10 @@ import { User } from "./User.entity";
 @Service()
 @Resolver()
 export class RegisterResolver {
-
   constructor(
     @InjectRepository(User) private userRepo: Repository<User>,
-    private logger: Logger,
-    ) {}
+    private logger: Logger
+  ) {}
 
   @Query(() => [User])
   public async users(): Promise<User[]> {
@@ -32,14 +31,14 @@ export class RegisterResolver {
     firstName,
     lastName,
     email,
-    password,
+    password
   }: RegisterInput): Promise<User> {
     const hashedPassword = await bcrypt.hash(password, 12);
     const entity = this.userRepo.create({
       email,
       firstName,
       lastName,
-      password: hashedPassword,
+      password: hashedPassword
     });
 
     return this.userRepo.save(entity);
