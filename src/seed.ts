@@ -1,16 +1,15 @@
 import "reflect-metadata";
 
 import Container from "typedi";
-import { createConnection, useContainer } from "typeorm";
 import { Recipe } from "./entity/Recipe.entity";
 import { IngredientFactory } from "./test/factory/IngredientFactory";
 import { RecipeFactory } from "./test/factory/RecipeFactory";
 import { RecipeIngredientFactory } from "./test/factory/RecipeIngredientFactory";
 import { UserFactory } from "./test/factory/UserFactory";
+import { Kernel } from "./Kernel";
 
 const seed = async () => {
-  useContainer(Container);
-  await createConnection();
+  await new Kernel().boot();
 
   const users = await Container.get(UserFactory).makeManyTimes(5);
   const recipes: Recipe[] = await Promise.all(
