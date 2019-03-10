@@ -8,7 +8,7 @@ import { AddRecipeInput } from "./AddRecipeInput";
 
 @Service()
 @Resolver()
-export class AddRecipeResolver {
+export class RecipeCrudResolver {
   constructor(
     @InjectRepository(Recipe) private recipeRepo: Repository<Recipe>,
     @InjectRepository(User) private userRepo: Repository<User>

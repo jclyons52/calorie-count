@@ -29,11 +29,11 @@ type Ingredient {
 }
 
 type Mutation {
-  register(input: RegisterInput!): User!
-  createRecipe(input: AddRecipeInput!): Recipe!
   createIngredient(data: CreateIngredientInput!): Ingredient!
   updateIngredient(data: CreateIngredientInput!, id: String!): Ingredient!
   deleteIngredient(id: String!): Boolean!
+  createRecipe(input: AddRecipeInput!): Recipe!
+  register(input: RegisterInput!): User!
 }
 
 type Query {
@@ -48,6 +48,7 @@ type Recipe {
   creationDate: DateTime!
   recipeIngredients: [RecipeIngredient!]!
   owner: User!
+  ingredients: [Ingredient!]!
 }
 
 type RecipeIngredient {
