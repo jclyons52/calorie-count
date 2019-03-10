@@ -1,9 +1,9 @@
-import { Recipe } from "src/entity/Recipe.entity";
-import { User } from "src/user/User.entity";
 import { Arg, Mutation, Resolver } from "type-graphql";
 import { Service } from "typedi";
 import { Repository } from "typeorm";
 import { InjectRepository } from "typeorm-typedi-extensions";
+import { Recipe } from "../entity/Recipe.entity";
+import { User } from "../user/User.entity";
 import { AddRecipeInput } from "./AddRecipeInput";
 
 @Service()
@@ -15,7 +15,7 @@ export class AddRecipeResolver {
   ) {}
 
   @Mutation(() => Recipe)
-  public async addRecipe(@Arg("input")
+  public async createRecipe(@Arg("input")
   {
     title,
     description,

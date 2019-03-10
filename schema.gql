@@ -3,6 +3,18 @@
 # !!!   DO NOT MODIFY THIS FILE BY YOURSELF   !!!
 # -----------------------------------------------
 
+input AddRecipeInput {
+  title: String!
+  description: String
+  ownerId: String!
+}
+
+input CreateIngredientInput {
+  title: String!
+  calories: Float!
+  unit: String!
+}
+
 """
 The javascript `Date` as string. Type represents date and time as the ISO Date string.
 """
@@ -18,6 +30,10 @@ type Ingredient {
 
 type Mutation {
   register(input: RegisterInput!): User!
+  createRecipe(input: AddRecipeInput!): Recipe!
+  createIngredient(data: CreateIngredientInput!): Ingredient!
+  updateIngredient(data: CreateIngredientInput!, id: String!): Ingredient!
+  deleteIngredient(id: String!): Boolean!
 }
 
 type Query {

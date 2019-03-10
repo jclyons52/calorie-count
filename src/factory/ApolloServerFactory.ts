@@ -1,4 +1,5 @@
 import { ApolloServer } from "apollo-server-express";
+import { Request } from "express";
 import { Service } from "typedi";
 import { SchemaFactory } from "./SchemaFactory";
 
@@ -7,6 +8,17 @@ export class ApolloServerFactory {
   constructor(private scheamFactory: SchemaFactory) {}
 
   public async generate(): Promise<ApolloServer> {
-    return new ApolloServer({ schema: await this.scheamFactory.generate() });
+    const schema = await this.scheamFactory.generate();
+
+    return new ApolloServer({
+      schema,
+      context: ({ req }: { req: Request & { user: unknown } }) => {
+        const context = {
+          req,
+          user: req.user
+        };
+        return context;
+      }
+    });
   }
 }
