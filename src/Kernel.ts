@@ -7,7 +7,14 @@ import { Logger } from "./loger/Logger";
 export class Kernel {
   public async boot() {
     useContainer(Container);
-    await createConnection();
+    await createConnection({
+      name: "default",
+      type: "sqlite",
+      database: "test",
+      synchronize: true,
+      entities: ["src/**/*.entity.ts"]
+    });
+    return this;
   }
 
   public async listen() {

@@ -14,8 +14,7 @@ export class ApolloServerFactory {
       schema,
       context: ({ req }: { req: Request & { user: unknown } }) => {
         const context = {
-          req,
-          user: req.user
+          req
         };
         return context;
       }
