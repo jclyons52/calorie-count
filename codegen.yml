@@ -4,3 +4,4 @@ documents: "./src/**/*.graphql"
 generates:
   ./src/client-types.ts:
     - typescript-client
+    - typescript-common

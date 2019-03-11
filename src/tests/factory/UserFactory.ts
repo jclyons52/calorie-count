@@ -17,7 +17,7 @@ export class UserFactory extends Factory<User> {
     email = faker.internet.email(),
     password = faker.internet.password(),
     recipes = []
-  }: Partial<User>): User {
+  }: Partial<User> = {}): User {
     return this.repository.create({
       email,
       firstName,

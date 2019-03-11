@@ -5,6 +5,7 @@ import { EntityManager, QueryRunner } from "typeorm";
 import { Recipe } from "../entity/Recipe.entity";
 import { ApolloServerFactory } from "../factory/ApolloServerFactory";
 import { Kernel } from "../Kernel";
+import { Factories } from "./factory/Factories";
 import { IngredientFactory } from "./factory/IngredientFactory";
 import { RecipeFactory } from "./factory/RecipeFactory";
 import { RecipeIngredientFactory } from "./factory/RecipeIngredientFactory";
@@ -15,11 +16,12 @@ export abstract class BaseTest {
   protected kernelOption: Kernel | null = null;
   protected queryRunner: QueryRunner;
   protected em: EntityManager;
+  protected factories: Factories;
 
   @AsyncSetup
   public async before(): Promise<void> {
     this.kernelOption = await new Kernel().boot();
-
+    this.factories = Container.get(Factories);
     // this.queryRunner = Container.get(Connection).createQueryRunner();
     // this.em = this.queryRunner.manager;
     // Container.set(EntityManager, this.em);

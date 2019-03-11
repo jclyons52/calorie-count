@@ -1,12 +1,7 @@
 import { AsyncTest, Expect, Timeout } from "alsatian";
-import fs from "fs";
-import path from "path";
-import { GetUsers } from "../client-types";
+import { GetUsers, RegisterUser } from "../client-types";
 import { BaseTest } from "./BaseTest";
-
-const read = (name: string) => {
-  return fs.readFileSync(path.resolve(__dirname, name), "utf8");
-};
+import { GetUsersQuery, RegisterUserMutation } from "./request";
 
 export class UserResolverSpec extends BaseTest {
   @AsyncTest()
@@ -15,8 +10,31 @@ export class UserResolverSpec extends BaseTest {
     await this.seed();
     const client = await this.getTestClient();
     const response = await client.query<GetUsers.Variables, GetUsers.Query>({
-      query: read("/request/GetUsers.graphql")
+      query: GetUsersQuery
     });
     Expect(response).toBeDefined();
+  }
+
+  @AsyncTest()
+  @Timeout(50000)
+  public async itCreatesUser() {
+    const client = await this.getTestClient();
+    const user = this.factories.userFactory.create();
+    const response = await client.mutate<
+      RegisterUser.Variables,
+      RegisterUser.Mutation
+    >({
+      mutation: RegisterUserMutation,
+      variables: {
+        input: {
+          email: user.email,
+          firstName: user.firstName,
+          lastName: user.lastName,
+          password: user.password
+        }
+      }
+    });
+    const userResult = response.data!.register;
+    Expect(userResult.name).toBe(user.firstName + " " + user.lastName);
   }
 }
