@@ -9,6 +9,7 @@ import { IngredientFactory } from "./factory/IngredientFactory";
 import { RecipeFactory } from "./factory/RecipeFactory";
 import { RecipeIngredientFactory } from "./factory/RecipeIngredientFactory";
 import { UserFactory } from "./factory/UserFactory";
+import { IGqlClient } from "./GqlClient";
 
 export abstract class BaseTest {
   protected kernelOption: Kernel | null = null;
@@ -17,9 +18,7 @@ export abstract class BaseTest {
 
   @AsyncSetup
   public async before(): Promise<void> {
-    if (!this.kernelOption) {
-      this.kernelOption = await new Kernel().boot();
-    }
+    this.kernelOption = await new Kernel().boot();
 
     // this.queryRunner = Container.get(Connection).createQueryRunner();
     // this.em = this.queryRunner.manager;
@@ -28,6 +27,7 @@ export abstract class BaseTest {
 
   @AsyncTeardown
   public async after(): Promise<void> {
+    // await Container.get(Connection).close();
     // await this.queryRunner.rollbackTransaction();
     // await this.queryRunner.release();
   }
@@ -39,9 +39,9 @@ export abstract class BaseTest {
     return this.kernelOption;
   };
 
-  protected async getTestClient() {
+  protected async getTestClient(): Promise<IGqlClient> {
     const server = await Container.get(ApolloServerFactory).generate();
-    return createTestClient(server);
+    return createTestClient(server) as IGqlClient;
   }
 
   protected async seed() {

@@ -1,0 +1,9 @@
+query GetUsers {
+  users {
+    recipes {
+      ingredients {
+        title
+      }
+    }
+  }
+}

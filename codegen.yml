@@ -1,0 +1,6 @@
+schema: schema.gql
+overwrite: true
+documents: "./src/**/*.graphql"
+generates:
+  ./src/client-types.ts:
+    - typescript-client

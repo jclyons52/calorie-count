@@ -23,7 +23,9 @@ export class Kernel {
     server.applyMiddleware({ app });
 
     app.listen(4000, () => {
-      Container.get(Logger).log("server started on port 4000");
+      Container.get(Logger).log(
+        "server started on port http://localhost:4000/graphql"
+      );
     });
   }
 }
