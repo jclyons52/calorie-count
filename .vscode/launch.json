@@ -8,7 +8,7 @@
       "type": "node",
       "request": "launch",
       "name": "Launch Program",
-      "runtimeArgs": ["-r", "ts-node-dev/register"],
+      "runtimeArgs": ["-r", "ts-node/register"],
       "args": ["${workspaceFolder}/src/index.ts"]
     },
     {
@@ -17,7 +17,7 @@
       "request": "launch",
       "protocol": "inspector",
       "cwd": "${workspaceRoot}",
-      "runtimeExecutable": "${workspaceRoot}/node_modules/.bin/ts-node-dev",
+      "runtimeExecutable": "${workspaceRoot}/node_modules/.bin/ts-node",
       "args": ["${workspaceRoot}/src/tests/runner.ts"],
       "restart": true
     },

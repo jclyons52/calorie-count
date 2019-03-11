@@ -5,15 +5,20 @@ import { ExpressFactory } from "./factory/ExpressFactory";
 import { Logger } from "./loger/Logger";
 
 export class Kernel {
+  private static isBooted = false;
   public async boot() {
-    useContainer(Container);
-    await createConnection({
-      name: "default",
-      type: "sqlite",
-      database: "test",
-      synchronize: true,
-      entities: ["src/**/*.entity.ts"]
-    });
+    if (!Kernel.isBooted) {
+      useContainer(Container);
+      await createConnection({
+        name: "default",
+        type: "sqlite",
+        database: "test",
+        synchronize: true,
+        entities: ["src/**/*.entity.ts"]
+      });
+      Kernel.isBooted = true;
+    }
+
     return this;
   }
 

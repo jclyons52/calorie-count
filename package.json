@@ -7,9 +7,9 @@
     "start": "ts-node-dev src/index.ts",
     "seed": "ts-node src/seed.ts",
     "lint:fix": "tslint -c tslint.json 'src/**/*.ts' --fix",
-    "test": "ts-node ./src/tests/runner.ts",
+    "test:all": "ts-node ./src/tests/runner.ts",
     "type-gen": "gql-gen",
-    "test:coverage": "nyc --reporter=lcov --reporter=html npm run test && nyc report"
+    "test": "nyc --reporter=lcov --reporter=html npm run test:all && nyc report"
   },
   "husky": {
     "hooks": {

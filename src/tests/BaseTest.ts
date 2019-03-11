@@ -23,13 +23,13 @@ export abstract class BaseTest {
     this.kernelOption = await new Kernel().boot();
     this.factories = Container.get(Factories);
     // this.queryRunner = Container.get(Connection).createQueryRunner();
-    // this.em = this.queryRunner.manager;
+    // this.em = Container.get(EntityManager);
     // Container.set(EntityManager, this.em);
   }
 
   @AsyncTeardown
   public async after(): Promise<void> {
-    // await Container.get(Connection).close();
+    // await Container.get(EntityManager).connection.close();
     // await this.queryRunner.rollbackTransaction();
     // await this.queryRunner.release();
   }

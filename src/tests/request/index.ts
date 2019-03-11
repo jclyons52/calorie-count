@@ -6,3 +6,6 @@ const read = (name: string) => {
 
 export const GetUsersQuery = read(__dirname + "/GetUsers.graphql");
 export const RegisterUserMutation = read(__dirname + "/RegisterUser.graphql");
+export const CreateIngredientMutation = read(
+  __dirname + "/CreateIngredient.graphql"
+);

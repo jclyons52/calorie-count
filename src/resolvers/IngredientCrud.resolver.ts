@@ -13,7 +13,9 @@ export class IngredientCrudResolver {
   ) {}
 
   @Mutation(() => Ingredient)
-  public async createIngredient(@Arg("data") data: CreateIngredientInput) {
+  public async createIngredient(
+    @Arg("data") data: CreateIngredientInput
+  ): Promise<Ingredient> {
     const entity = this.repo.create(data);
     return this.repo.save(entity);
   }
