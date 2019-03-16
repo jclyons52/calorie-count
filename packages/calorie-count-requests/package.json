@@ -1,0 +1,19 @@
+{
+  "name": "calorie-count-requests",
+  "version": "1.0.0",
+  "description": "",
+  "main": "index.js",
+  "scripts": {
+    "type-gen": "gql-gen"
+  },
+  "author": "",
+  "license": "ISC",
+  "devDependencies": {
+    "graphql-code-generator": "^0.18.0",
+    "graphql-codegen-typescript-client": "^0.18.0",
+    "graphql-codegen-typescript-common": "^0.18.0"
+  },
+  "dependencies": {
+    "graphql": "^14.1.1"
+  }
+}
