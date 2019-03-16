@@ -1,8 +1,8 @@
 import { Expect, Test } from "alsatian";
+import { CreateIngredientMutation } from "calorie-count-requests";
 import { CreateIngredient } from "../client-types";
 import { Ingredient } from "../entity/Ingredient.entity";
 import { BaseTest } from "./BaseTest";
-import { CreateIngredientMutation } from "./request";
 
 export class IngredientResolverSpec extends BaseTest {
   @Test()
