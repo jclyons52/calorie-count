@@ -1,9 +1,9 @@
 {
-  "name": "calorie-count-requests",
+  "name": "@calorie-count/requests",
   "version": "1.0.0",
   "description": "",
-  "main": "index.js",
-  "types": "index.d.ts",
+  "main": "src/index.js",
+  "types": "src/index.d.ts",
   "scripts": {
     "type-gen": "gql-gen"
   },

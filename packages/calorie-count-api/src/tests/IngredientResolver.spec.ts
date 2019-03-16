@@ -1,6 +1,8 @@
+import {
+  CreateIngredient,
+  CreateIngredientMutation
+} from "@calorie-count/requests";
 import { Expect, Test } from "alsatian";
-import { CreateIngredientMutation } from "calorie-count-requests";
-import { CreateIngredient } from "../client-types";
 import { Ingredient } from "../entity/Ingredient.entity";
 import { BaseTest } from "./BaseTest";
 

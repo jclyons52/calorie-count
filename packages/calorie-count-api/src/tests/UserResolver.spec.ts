@@ -1,6 +1,10 @@
+import {
+  GetUsers,
+  GetUsersQuery,
+  RegisterUser,
+  RegisterUserMutation
+} from "@calorie-count/requests";
 import { AsyncTest, Expect, Timeout } from "alsatian";
-import { GetUsersQuery, RegisterUserMutation } from "calorie-count-requests";
-import { GetUsers, RegisterUser } from "../client-types";
 import { BaseTest } from "./BaseTest";
 
 export class UserResolverSpec extends BaseTest {
