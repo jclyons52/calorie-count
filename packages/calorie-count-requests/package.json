@@ -2,8 +2,8 @@
   "name": "@calorie-count/requests",
   "version": "1.0.0",
   "description": "",
-  "main": "src/index.js",
-  "types": "src/index.d.ts",
+  "main": "dist/index.js",
+  "types": "dist/index.d.ts",
   "scripts": {
     "type-gen": "gql-gen"
   },
@@ -15,6 +15,7 @@
     "graphql-codegen-typescript-common": "^0.18.0"
   },
   "dependencies": {
-    "graphql": "^14.1.1"
+    "graphql": "^14.1.1",
+    "graphql-tag": "^2.10.1"
   }
 }

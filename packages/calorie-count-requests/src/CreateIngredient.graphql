@@ -1,6 +1,0 @@
-mutation CreateIngredient($data: CreateIngredientInput!) {
-  createIngredient(data: $data) {
-    id
-    title
-  }
-}

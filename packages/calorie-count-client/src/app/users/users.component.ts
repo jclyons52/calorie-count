@@ -1,7 +1,6 @@
 import { Component, OnInit } from "@angular/core";
-import { GetUsers } from "@calorie-count/requests";
+import { GetUsers, GetUsersQuery } from "@calorie-count/requests";
 import { Apollo } from "apollo-angular";
-import gql from "graphql-tag";
 import { Observable } from "rxjs";
 import { map } from "rxjs/operators";
 
@@ -18,15 +17,7 @@ export class UsersComponent implements OnInit {
   ngOnInit() {
     this.users = this.apollo
       .watchQuery<GetUsers.Query>({
-        query: gql`
-          users {
-            recipes {
-              ingredients {
-                title
-              }
-            }
-          }
-      `
+        query: GetUsersQuery
       })
       .valueChanges.pipe(map(result => result.data.users));
   }
