@@ -37,8 +37,8 @@ type Mutation {
 }
 
 type Query {
-  hello: String!
   users: [User!]!
+  user(userId: Float!): User!
 }
 
 type Recipe {

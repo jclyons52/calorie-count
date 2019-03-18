@@ -1,6 +1,6 @@
 schema: ../calorie-count-api/schema.gql
 overwrite: true
-documents: "./src/**/*.graphql"
+documents: "./src/**/*.gql.ts"
 generates:
   ./src/client-types.ts:
     - typescript-client

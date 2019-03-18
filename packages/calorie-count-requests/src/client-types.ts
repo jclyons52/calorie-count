@@ -22,6 +22,36 @@ export namespace CreateIngredient {
   };
 }
 
+export namespace GetUser {
+  export type Variables = {
+    userId: number;
+  };
+
+  export type Query = {
+    __typename?: "Query";
+
+    user: User;
+  };
+
+  export type User = {
+    __typename?: "User";
+
+    name: string;
+
+    email: string;
+
+    recipes: Recipes[];
+  };
+
+  export type Recipes = {
+    __typename?: "Recipe";
+
+    id: string;
+
+    title: string;
+  };
+}
+
 export namespace GetUsers {
   export type Variables = {};
 
@@ -34,19 +64,11 @@ export namespace GetUsers {
   export type Users = {
     __typename?: "User";
 
-    recipes: Recipes[];
-  };
+    id: string;
 
-  export type Recipes = {
-    __typename?: "Recipe";
+    name: string;
 
-    ingredients: Ingredients[];
-  };
-
-  export type Ingredients = {
-    __typename?: "Ingredient";
-
-    title: string;
+    email: string;
   };
 }
 
