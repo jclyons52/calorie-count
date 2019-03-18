@@ -1,3 +1,18 @@
-<p>
-  user works!
-</p>
+<div class="card">
+  <div class="card-header">
+    {{ user.email }}
+    ({{ user.name }})
+    <div class="text-right">
+      <a routerLink="/users" class="btn btn-primary">
+        Users
+      </a>
+    </div>
+  </div>
+  <ul class="list-group list-group-flush">
+    <li *ngFor="let recipe of user.recipes" class="list-group-item">
+      <a [routerLink]="['/recipes', recipe.id]">
+        {{ recipe.title }}
+      </a>
+    </li>
+  </ul>
+</div>
